@@ -15,8 +15,7 @@ namespace ETicketStore.Common.Repository
 
         public async Task<List<User>> GetAllUsers()
         {
-            var conn = _dataSource.CreateConnection();
-            await conn.OpenAsync();
+            var conn = await GetConnection();
             var cmd = new NpgsqlCommand(CommonQueries.SelectAll(nameof(User)), conn);
             var reader = await cmd.ExecuteReaderAsync();
             var users = new List<User>();

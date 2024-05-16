@@ -14,8 +14,7 @@ namespace ETicketStore.Common.Repository
 
         public async Task<Dictionary<string, Event>> GetTicketsEvents(IEnumerable<string> tickets)
         {
-            var conn = _dataSource.CreateConnection();
-            await conn.OpenAsync();
+            var conn = await GetConnection();
             var cmd = new NpgsqlCommand(EventQueries.GetTicketsEvents(tickets), conn);
             var reader = await cmd.ExecuteReaderAsync();
             var ticketEvents = new Dictionary<string, Event>();
@@ -36,8 +35,7 @@ namespace ETicketStore.Common.Repository
 
         public async Task<List<EventShedule>> GetEventShedule()
         {
-            var conn = _dataSource.CreateConnection();
-            await conn.OpenAsync();
+            var conn = await GetConnection();
             var cmd = new NpgsqlCommand(EventQueries.GetEventShedule(), conn);
             var reader = await cmd.ExecuteReaderAsync();
             var ticketEvents = new List<EventShedule>();
@@ -59,8 +57,7 @@ namespace ETicketStore.Common.Repository
 
         public async Task AddEventShedule(Event @event)
         {
-            var conn = _dataSource.CreateConnection();
-            await conn.OpenAsync();
+            var conn = await GetConnection();
             var cmd = new NpgsqlCommand(EventQueries.AddEventShedule(@event), conn);
             await cmd.ExecuteNonQueryAsync();
         }

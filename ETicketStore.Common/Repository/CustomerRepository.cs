@@ -15,10 +15,7 @@ namespace ETicketStore.Common.Repository
 
         public async Task<Dictionary<string, Customer>> GetTicketsCustomers(IEnumerable<string> tickets)
         {
-            var conn = _dataSource.CreateConnection();
-            await conn.OpenAsync();
-            var f = string.Join(" ", tickets.Select(x => $",\'{x}\'"));
-            var ff = CustomerQueries.GetTicketsCustomers(tickets);
+            var conn = await GetConnection();
             var cmd = new NpgsqlCommand(CustomerQueries.GetTicketsCustomers(tickets), conn);
             var reader = await cmd.ExecuteReaderAsync();
             var ticketCustomers = new Dictionary<string, Customer>();

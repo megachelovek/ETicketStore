@@ -21,8 +21,7 @@ namespace ETicketStore.Common.Repository
 
         public async Task<IEnumerable<Ticket>> GetAllAsync()
         {
-            var conn = _dataSource.CreateConnection();
-            await conn.OpenAsync();
+            var conn = await GetConnection();
             var cmd = new NpgsqlCommand(CommonQueries.SelectAll(nameof(Ticket)), conn);
             var reader = await cmd.ExecuteReaderAsync();
             var result = new List<Ticket>();
@@ -61,8 +60,7 @@ namespace ETicketStore.Common.Repository
 
         public async Task BuyTicket(string customerId, string ticketId)
         {
-            var conn = _dataSource.CreateConnection();
-            await conn.OpenAsync();
+            var conn = await GetConnection();
             var cmd = new NpgsqlCommand(TicketQueries.BuyTicket(customerId, ticketId), conn);
             await cmd.ExecuteNonQueryAsync();
         }

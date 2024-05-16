@@ -9,7 +9,7 @@ namespace ETicketStore.Common.Repository
         where T : class
     {
         protected readonly NpgsqlDataSource _dataSource;
-        private readonly NpgsqlConnection connection;
+        private NpgsqlConnection connection;
 
         protected Repository(IConfiguration configuration)
         {
@@ -20,9 +20,9 @@ namespace ETicketStore.Common.Repository
 
         protected async Task<NpgsqlConnection> GetConnection()
         {
-            
-            var conn = await GetConnection();
-            return conn;
+            connection = _dataSource.CreateConnection();
+            await connection.OpenAsync();
+            return connection;
         }
 
         public void Dispose()

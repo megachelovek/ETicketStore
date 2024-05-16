@@ -25,7 +25,7 @@ namespace ETicketStore.Common.Repository
                     reader["title"].ToString(),
                     reader["description"].ToString(),
                     (int)reader["amounttickets"],
-                    (bool)reader["ispublic"]);
+                    reader["ispublic"] != DBNull.Value ? (bool)reader["ispublic"] : false);
 
                 ticketEvents.Add(reader["ticketId"].ToString(), @event);
             }

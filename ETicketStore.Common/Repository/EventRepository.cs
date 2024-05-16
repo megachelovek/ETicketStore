@@ -47,7 +47,7 @@ namespace ETicketStore.Common.Repository
                     reader["description"].ToString(),
                     (int)reader["amounttickets"],
                     DateTime.Parse(reader["edate"].ToString()),
-                    (bool)reader["ispublic"]);
+                    reader["ispublic"] != DBNull.Value ? (bool)reader["ispublic"] : false);
 
                 ticketEvents.Add(@event);
             }

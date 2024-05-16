@@ -17,7 +17,7 @@ namespace ETicketStore.Common
             CustomerId = customerId;
             Price = price;
             Address = address;
-            isavailable = isAvailable;
+            IsAvailable = isAvailable;
             EventId = @eventId;
         }
 
@@ -32,7 +32,7 @@ namespace ETicketStore.Common
         public string CustomerId { get; }
         public decimal Price { get; set; }
         public string Address { get; set; }
-        public bool isavailable { get; set; }
+        public bool IsAvailable { get; set; }
         public Event Event { get; set; }
         public string EventId { get; }
     }

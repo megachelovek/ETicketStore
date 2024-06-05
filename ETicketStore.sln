@@ -5,9 +5,13 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETicketStore.Api", "ETicketStore.Api\ETicketStore.Api.csproj", "{1132114F-4B21-41FF-891B-A19C46257318}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicketStore.Common", "ETicketStore.Common\ETicketStore.Common.csproj", "{6C640289-7781-4F6E-9553-1AE65445E169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETicketStore.Api.Admin", "ETicketStore.Api.Admin\ETicketStore.Api.Admin.csproj", "{28938875-385C-4605-B722-B4E31216D670}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicketStore.Api.Admin", "ETicketStore.Api.Admin\ETicketStore.Api.Admin.csproj", "{28938875-385C-4605-B722-B4E31216D670}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicketStore.Infrastructure", "ETicketStore.Infrastructure\ETicketStore.Infrastructure.csproj", "{FF702F9E-C19F-4D99-9683-558A81123B95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicketStore.Domain", "ETicketStore.Domain\ETicketStore.Domain.csproj", "{419AC217-DDAC-4AEA-96BD-4183D16BFD00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicketStore.Application", "ETicketStore.Application\ETicketStore.Application.csproj", "{B80F4586-61F3-487D-BF29-DCEDE18CE0FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +23,22 @@ Global
 		{1132114F-4B21-41FF-891B-A19C46257318}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1132114F-4B21-41FF-891B-A19C46257318}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1132114F-4B21-41FF-891B-A19C46257318}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C640289-7781-4F6E-9553-1AE65445E169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C640289-7781-4F6E-9553-1AE65445E169}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C640289-7781-4F6E-9553-1AE65445E169}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C640289-7781-4F6E-9553-1AE65445E169}.Release|Any CPU.Build.0 = Release|Any CPU
 		{28938875-385C-4605-B722-B4E31216D670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{28938875-385C-4605-B722-B4E31216D670}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28938875-385C-4605-B722-B4E31216D670}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28938875-385C-4605-B722-B4E31216D670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF702F9E-C19F-4D99-9683-558A81123B95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF702F9E-C19F-4D99-9683-558A81123B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF702F9E-C19F-4D99-9683-558A81123B95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF702F9E-C19F-4D99-9683-558A81123B95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{419AC217-DDAC-4AEA-96BD-4183D16BFD00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{419AC217-DDAC-4AEA-96BD-4183D16BFD00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{419AC217-DDAC-4AEA-96BD-4183D16BFD00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{419AC217-DDAC-4AEA-96BD-4183D16BFD00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B80F4586-61F3-487D-BF29-DCEDE18CE0FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B80F4586-61F3-487D-BF29-DCEDE18CE0FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B80F4586-61F3-487D-BF29-DCEDE18CE0FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B80F4586-61F3-487D-BF29-DCEDE18CE0FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

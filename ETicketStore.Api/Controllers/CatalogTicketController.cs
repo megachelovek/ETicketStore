@@ -1,6 +1,3 @@
-using ETicketStore.Common;
-using ETicketStore.Common.Models;
-using ETicketStore.Common.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ETicketStore.Api.Controllers

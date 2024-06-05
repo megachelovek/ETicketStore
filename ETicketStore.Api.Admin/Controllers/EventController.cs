@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ETicketStore.Common.Models;
-using ETicketStore.Common.Repository;
+using ETicketStore.Domain.Models;
+using ETicketStore.Domain.Repository;
 
 namespace ETicketStore.Api.Admin.Controllers
 {

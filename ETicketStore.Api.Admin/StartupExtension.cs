@@ -1,4 +1,4 @@
-﻿using ETicketStore.Common.Repository;
+﻿using ETicketStore.Domain.Repository;
 
 namespace ETicketStore.Api.Admin;
 
@@ -11,7 +11,7 @@ public static class StartupExtensions
         services.AddSingleton<EventRepository>();
         services.AddSingleton<CustomerRepository>();
         services.AddSingleton<RoleRepository>();
-        services.AddSingleton<UserRepository>();
+        services.AddSingleton<UserSpecifications>();
         services.AddSingleton<ApplicationContext>();
         return services;
     }

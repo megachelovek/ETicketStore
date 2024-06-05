@@ -1,4 +1,4 @@
-﻿using ETicketStore.Common.Models;
+﻿using ETicketStore.Domain.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -27,7 +27,7 @@ namespace ETicketStore.Api.Admin.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("GetToken")]
-        public async Task<string> GetToken(Login model)
+        public async Task<string> GetToken()//(Login model)
         {
             await _context.UpdateUsersAndRoles();
             User user = _context.Users
@@ -35,28 +35,11 @@ namespace ETicketStore.Api.Admin.Controllers
 
             if (user != null)
             {
-                return GenerateToken(user);
+                //return GenerateToken(user);
             }
             return "Unauthorized";
         }
 
-        private string GenerateToken(User user)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
-            };
-
-            var jwtToken = new JwtSecurityToken(
-                claims: claims,
-                notBefore: DateTime.UtcNow,
-                expires: DateTime.UtcNow.AddDays(30),
-                signingCredentials: new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Token:JWT_Secret"])),
-                    SecurityAlgorithms.HmacSha256Signature)
-                );
-            return new JwtSecurityTokenHandler().WriteToken(jwtToken);
-        }
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿using ETicketStore.Common.Repository;
+﻿using ETicketStore.Domain.Repository;
 
 namespace ETicketStore;
 

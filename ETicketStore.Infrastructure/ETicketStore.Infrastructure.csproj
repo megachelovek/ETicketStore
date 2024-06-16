@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ETicketStore.Domain\ETicketStore.Domain.csproj" />
+    <ProjectReference Include="..\ETicketStore.Application\ETicketStore.Application.csproj" />
   </ItemGroup>
 
 </Project>

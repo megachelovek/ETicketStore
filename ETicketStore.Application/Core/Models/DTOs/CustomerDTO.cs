@@ -1,11 +1,8 @@
-﻿using ETicketStore.Domain.Models;
-using System;
-
-namespace ETicketStore.Domain.Models
+﻿namespace ETicketStore.Domain.Models
 {
     public class CustomerDTO : BaseEntity
     {
-        public Customer(Guid id, string name, string email, string address, string city, string postalCode, string country, string phone)
+        public CustomerDTO(Guid id, string name, string email, string address, string city, string postalCode, string country, string phone)
         {
             Id = id;
             Name = name;

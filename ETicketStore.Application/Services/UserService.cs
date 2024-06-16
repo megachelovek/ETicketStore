@@ -1,17 +1,17 @@
-﻿using ETicketStore.Domain.Models;
-using ETicketStore.Domain.Repository;
+﻿using ETicketStore.Domain.Core.Interfaces;
+using ETicketStore.Domain.Models;
 
 namespace ETicketStore.Application.Services
 {
     public class UserService
     {
-        private readonly RoleRepository _roleRepository;
-        private readonly UserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
+        private readonly IUserRepository _userRepository;
 
         public List<User> Users { get; set; }
         public List<Role> Roles { get; set; }
 
-        public UserService(RoleRepository roleRepository, UserRepository userRepository)
+        public UserService(IRoleRepository roleRepository, IUserRepository userRepository)
         {
             _roleRepository = roleRepository;
             _userRepository = userRepository;
@@ -27,7 +27,6 @@ namespace ETicketStore.Application.Services
                        .ToDictionary(t => t.Id, t => t);
                 Users.ForEach(t => { t.Role = Roles[t.RoleId]; });
             }
-
         }
     }
 }

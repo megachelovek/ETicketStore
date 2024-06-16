@@ -1,28 +1,20 @@
-﻿using Microsoft.Extensions.Configuration;
-using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using ETicketStore.Domain.Queries;
-using System.Linq;
-using ETicketStore.Domain.Models;
+﻿using ETicketStore.Domain.Queries;
 using ETicketStore.Infrastructure.Data;
 using Dapper;
-using Microsoft.Extensions.Logging;
+using ETicketStore.Infrastructure.Repository;
 
 namespace ETicketStore.Domain.Repository
 {
-    public class ETicketRepository : Repository<Ticket>
+    public class ETicketRepository : BaseRepositoryAsync<Ticket>
     {
         private CustomerRepository _customerRepository;
         private EventRepository _eventRepository;
         private DataContext _context;
 
-        public ETicketRepository(DataContext context, CustomerRepository customerRepository, EventRepository eventRepository) : base(configuration)
+        public ETicketRepository(DataContext context, CustomerRepository customerRepository, EventRepository eventRepository) : base(context)
         {
             _customerRepository = customerRepository;
             _eventRepository = eventRepository;
-            _context = context;
         }
 
         public async Task<List<Ticket>> GetAllAsync()
@@ -42,15 +34,28 @@ namespace ETicketStore.Domain.Repository
                 ticket.Customer = ticketsCustomers.FirstOrDefault(x => x.Id == Guid.Parse(ticket.CustomerId));
                 ticket.Event = ticketsEvents.FirstOrDefault(x => x.Id == Guid.Parse(ticket.CustomerId));
             }
-
             return tickets;
-
         }
 
         public async Task BuyTicket(string customerId, string ticketId)
         {
             var connection = _context.CreateConnection();
             await connection.ExecuteAsync(TicketQueries.BuyTicket(customerId, ticketId));
+        }
+
+        public override Task<Ticket> AddAsync(Ticket entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Update(Ticket entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Delete(Ticket entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,52 +1,45 @@
 ﻿using Dapper;
-using ETicketStore.Domain;
-using ETicketStore.Domain.Core;
+using ETicketStore.Domain.Core.Interfaces;
 using ETicketStore.Domain.Models;
 using ETicketStore.Domain.Queries;
 using ETicketStore.Infrastructure.Data;
 
 namespace ETicketStore.Infrastructure.Repository
 {
-    public class BaseRepositoryAsync<T> : IBaseRepositoryAsync<T> where T : BaseEntity
+    public abstract class BaseRepositoryAsync<T> : IBaseRepositoryAsync<T> where T : BaseEntity
     {
-        protected readonly DataContext _dbContext;
+        protected readonly DataContext _context;
 
         public BaseRepositoryAsync(DataContext dbContext)
         {
-            _dbContext = dbContext;
+            _context = dbContext;
         }
 
         public virtual async Task<T?> GetByIdAsync(Guid id)
         {
-            var connection = _dbContext.CreateConnection();
-            return (await connection.QueryAsync<T>(CommonQueries.SelectItem(nameof(T), id.ToString()))).FirstOrDefault();
+            var unitOfWork = _context.UnitOfWork;
+            var action = unitOfWork.Connection;
+            return (await action.QueryAsync<T>(CommonQueries.SelectItem(nameof(T), id.ToString()))).FirstOrDefault();
         }
 
         public async Task<IList<T>> ListAllAsync()
         {
-            var connection = _dbContext.CreateConnection();
-            return (await connection.QueryAsync<T>(CommonQueries.SelectAll(nameof(T)))).ToList();
+            var unitOfWork = _context.UnitOfWork;
+            var action = unitOfWork.Connection;
+            return (await action.QueryAsync<T>(CommonQueries.SelectAll(nameof(T)))).ToList();
         }
 
         public async Task<int> CountAsync(string tableName)
         {
-            var connection = _dbContext.CreateConnection();
-            return (await connection.QueryAsync<int>(CommonQueries.CountAsync(tableName))).FirstOrDefault();
+            var unitOfWork = _context.UnitOfWork;
+            var action = unitOfWork.Connection;
+            return (await action.QueryAsync<int>(CommonQueries.CountAsync(tableName))).FirstOrDefault();
         }
 
-        public async Task<T> AddAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract Task<T> AddAsync(T entity);
 
-        public void Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Update(T entity);
 
-        public void Delete(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Delete(T entity);
     }
 }

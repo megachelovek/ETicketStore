@@ -8,26 +8,37 @@ using System.Linq;
 using ETicketStore.Domain.Models;
 using ETicketStore.Infrastructure.Data;
 using Dapper;
+using ETicketStore.Infrastructure.Repository;
 
 namespace ETicketStore.Domain.Repository
 {
-    public class CustomerRepository:Repository<Customer>
+    public class CustomerRepository: BaseRepositoryAsync<Customer>
     {
-        private DataContext _context;
-
-        public CustomerRepository(DataContext context)
-        {
-            _context = context;
-        }
+        public CustomerRepository(DataContext context):base(context) 
+        {}
 
         public async Task<List<Customer>> GetTicketsCustomers(IEnumerable<string> tickets)
         {
-            var connection = _context.CreateConnection();
-
-            var customer = (await connection.QueryAsync<Customer>(CommonQueries.SelectAll(nameof(Customer)))).ToList();
+            var unitOfWork = _context.UnitOfWork;
+            var action = unitOfWork.Connection;
+            var customer = (await action.QueryAsync<Customer>(CommonQueries.SelectAll(nameof(Customer)))).ToList();
 
             return customer;
+        }
 
+        public override Task<Customer> AddAsync(Customer entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Delete(Customer entity)
+        {
+            throw new NotImplementedException();
+        }
+         
+        public override void Update(Customer entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

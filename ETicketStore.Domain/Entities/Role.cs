@@ -2,7 +2,7 @@
 
 namespace ETicketStore.Domain.Models
 {
-    public class Role
+    public class Role : BaseEntity
     {
         [Key]
         public int Id { get; set; }

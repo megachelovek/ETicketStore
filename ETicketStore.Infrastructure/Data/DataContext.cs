@@ -4,37 +4,35 @@ using System.Data;
 
 namespace ETicketStore.Infrastructure.Data
 {
-    public class DataContext
+    public sealed class DataContext : IDisposable
     {
         private readonly IConfiguration _configuration;
+        private readonly IDbConnection _connection = null;
+        private readonly UnitOfWork _unitOfWork = null;
 
         public DataContext(IConfiguration configuration)
         {
             _configuration = configuration;
+            _connection = CreateConnection();
+            _connection.Open();
+            _unitOfWork = new UnitOfWork(_connection);
         }
 
-        public IDbConnection CreateConnection()
+        private IDbConnection CreateConnection()
         {
             var connectionString = _configuration.GetRequiredSection("PostgreSQL:ConnectionString");
             return new NpgsqlConnection(connectionString.Value);
         }
 
-        //protected async Task<NpgsqlConnection> GetConnection()
-        //{
-        //    connection = _dataSource.CreateConnection();
-        //    await connection.OpenAsync();
-        //    return connection;
-        //}
+        public UnitOfWork UnitOfWork
+        {
+            get { return _unitOfWork; }
+        }
 
-        //public void Dispose()
-        //{
-        //    connection.Close();
-        //    IDisposable d = connection as IDisposable;
-        //    if (d != null)
-        //        d.Dispose();
-        //    GC.SuppressFinalize(this);
-        //}
-
-        //public DbSet<User> Users { get; set; }
+        public void Dispose()
+        {
+            _unitOfWork.Dispose();
+            _connection.Dispose();
+        }
     }
 }

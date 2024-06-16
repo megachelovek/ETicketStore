@@ -1,6 +1,6 @@
 ﻿using ETicketStore.Domain.Models;
 
-namespace ETicketStore.Domain.Core
+namespace ETicketStore.Domain.Core.Interfaces
 {
     public interface IBaseRepositoryAsync<T> where T : BaseEntity
     {

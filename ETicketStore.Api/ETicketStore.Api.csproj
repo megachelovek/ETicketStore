@@ -20,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ETicketStore.Domain\ETicketStore.Domain.csproj" />
+    <ProjectReference Include="..\ETicketStore.Application\ETicketStore.Application.csproj" />
+    <ProjectReference Include="..\ETicketStore.Infrastructure\ETicketStore.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

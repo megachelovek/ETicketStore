@@ -20,7 +20,7 @@ namespace ETicketStore.Api.Controllers
         [Route("GetCatalogTickets")]
         public async Task<IEnumerable<Ticket>> GetCatalogTickets()
         {
-            return await _eTicketRepository.GetAllAsync();
+            return await ticketService.GetAllAsync();
         }
 
         [HttpGet]

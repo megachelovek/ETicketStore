@@ -2,10 +2,10 @@
 {
     internal interface IUserService
     {
-        Task<CreateUserRes> CreateUser(CreateUserReq req);
+        Task<CreateUserResponse> CreateUser(CreateUserRequest req);
 
-        Task<ValidateUserRes> ValidateUser(ValidateUserReq req);
+        Task<ValidateUserResponse> ValidateUser(ValidateUserRequest req);
 
-        Task<GetAllActiveUsersRes> GetAllActiveUsers();
+        Task<GetAllActiveUsersResponse> GetAllActiveUsers();
     }
 }
